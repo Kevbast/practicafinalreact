@@ -47,7 +47,7 @@ export default class MenuPartidos extends Component {
                   {//FUNCIÓN PARA VER LOS HOSPITALES Y OBTENER EL IDHOSPITAL PARA ENVIARLO A DOCTORES CON EL NAVLINK
                       this.state.equipos.map((equipo,index)=>{
                           return (<li className="nav-item" key={index} >
-                              <NavLink className="dropdown-item" >{equipo.nombre}</NavLink>
+                              <NavLink className="dropdown-item" to={"/detailsequipo/"+equipo.idEquipo} >{equipo.nombre}</NavLink>
                           </li>)
                       })
                   }
