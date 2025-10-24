@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Global from './../Global'
+import { NavLink } from 'react-router-dom';
 
 export default class DetailsEquipos extends Component {
     url=Global.apiFutbol;
@@ -15,33 +16,59 @@ export default class DetailsEquipos extends Component {
         axios.get(this.url+request).then(response=>{
             console.log("Cargando equipos...")
             console.log(response.data)
+            this.setState({
+              equipo:response.data
+            })
         })
     }
     componentDidMount=()=>{
         this.loadDetails();
     }
+    componentDidUpdate=(oldProps)=>{
+      if(oldProps.idEquipo != this.props.idEquipo){
+        this.loadDetails();
+      }
+    }
 
   render() {
     
-    const c = this.state.equipo || {}
     return (
-      <div>DetailsEquipos{this.props.idEquipo}
-        <div className="card mb-3" style={{maxWidth: 540}}>
-        <div className="row g-0 align-items-center">
-          <div className="col-4">
-            <img src={c.imagen} className="img-fluid rounded-start" alt={c.nombre} />
-          </div>
-          <div className="col-8">
-            <div className="card-body">
-              <h5 className="card-title mb-1">{c.nombre} {c.campions}</h5>
-              <p className="card-text text-muted mb-0">Descripción: {c.descripcion}</p>
-              <small className="text-secondary">ID: {c.web}</small>
-            </div>
-          </div>
+      <div className="container">
+  <h1 className="text-center">Details Equipo: {this.props.idEquipo}</h1>
+
+  <div className="row justify-content-center mt-4">
+    <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+      <div className="card text-center">
+        <img
+          src={this.state.equipo.imagen}
+          alt={this.state.equipo.nombre}
+          className="card-img-top img-fluid mx-auto"
+          style={{ maxHeight: "250px", objectFit: "cover" }}
+        />
+        <div className="card-body">
+          <h5 className="card-title">Nombre: {this.state.equipo.nombre}</h5>
+          <h6 className="card-subtitle mb-2 text-muted">
+            Champions: {this.state.equipo.champions}
+          </h6>
+
+          {/* text-break asegura que palabras muy largas no rompan el diseño */}
+          <p className="card-text text-break">
+            Descripción: {this.state.equipo.descripcion}
+          </p>
+
+          <small className="text-secondary d-block mb-2">ID: {this.state.equipo.web}</small>
+
+          <NavLink className="btn btn-success me-2" to={`/detailsjugadores/${this.props.idEquipo}`}>
+            Jugadores
+          </NavLink>
+          <NavLink className="btn btn-info" to={"/"}>
+            Volver
+          </NavLink>
         </div>
       </div>
-      </div>
-    
-    )
+    </div>
+  </div>
+</div>
+)
   }
 }

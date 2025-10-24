@@ -27,7 +27,9 @@ export default class MenuPartidos extends Component {
     return (
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">Champions</a>
+          <a className="navbar-brand" href="#">
+           <img style={{width:"80px",height:"60px"}} src="https://tse1.mm.bing.net/th/id/OIP.EE7SqXBEz7dH9BfcgkGijAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"/> 
+            Champions</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -37,14 +39,14 @@ export default class MenuPartidos extends Component {
                 <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/">Apuestas</NavLink>
+                <NavLink className="nav-link active" aria-current="page" to="/apuestas">Apuestas</NavLink>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Equipos
                 </a>
                 <ul className="dropdown-menu">
-                  {//FUNCIÓN PARA VER LOS HOSPITALES Y OBTENER EL IDHOSPITAL PARA ENVIARLO A DOCTORES CON EL NAVLINK
+                  {
                       this.state.equipos.map((equipo,index)=>{
                           return (<li className="nav-item" key={index} >
                               <NavLink className="dropdown-item" to={"/detailsequipo/"+equipo.idEquipo} >{equipo.nombre}</NavLink>
