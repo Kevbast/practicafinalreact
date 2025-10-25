@@ -6,6 +6,7 @@ import DetailsEquipos from './components/DetailsEquipos';
 import DetailsJugadores from './components/DetailsJugadores';
 import DetailsJugador from './components/DetailsJugador';
 import Apuestas from './components/Apuestas'
+import CreateApuesta from './components/CreateApuesta';
 
 export default class Router extends Component {
   render() {
@@ -30,6 +31,7 @@ export default class Router extends Component {
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/apuestas" element={<Apuestas/>} />
+            <Route path="/createapuesta" element={<CreateApuesta/>} />
             <Route path="/detailsequipo/:idEquipo" element={<DetailsElement/>} />
             <Route path="/detailsjugadores/:idEquipo" element={<DetailsJugadoresElement/>} />
             <Route path="/detailsjugador/:idJugador" element={<DetailsJugadorElement/>} />
